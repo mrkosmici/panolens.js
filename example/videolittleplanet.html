@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <title>kwartet</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: 'Open Sans', sans-serif;
+        background-color: #000;
+      }
+
+    </style>
+  </head>
+
+  <body>
+
+    <div class="intro">kwartet</small></div>
+
+    
+  <script src="../node_modules/three/build/three.min.js"></script>
+  <script src="../build/panolens.js"></script>
+
+    <script>
+
+      var littlePlanet, viewer, lists, path, format;
+
+      path = 'asset/textures/video/kwartet.mp4';
+      //photo.texture = new THREE.TextureLoader().load( url );
+			//littlePlanet.updateTexture( this.texture );
+
+      viewer = new PANOLENS.Viewer( { controlBar: false } );
+      littlePlanet = new PANOLENS.VideoLittlePlanet( path );
+      viewer.add( littlePlanet );
+
+      viewer.getControl().addEventListener('change', function(e) {
+        console.log(e);
+      });
+
+    </script>
+
+  </body>
+</html>

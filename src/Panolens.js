@@ -22,6 +22,7 @@ export { VideoPanorama } from './panorama/VideoPanorama';
 export { GoogleStreetviewPanorama } from './panorama/GoogleStreetviewPanorama';
 export { LittlePlanet } from './panorama/LittlePlanet';
 export { ImageLittlePlanet } from './panorama/ImageLittlePlanet';
+export { VideoLittlePlanet } from './panorama/VideoLittlePlanet';
 export { CameraPanorama } from './panorama/CameraPanorama';
 export { StereoImagePanorama } from './panorama/StereoImagePanorama';
 export { StereoVideoPanorama } from './panorama/StereoVideoPanorama';

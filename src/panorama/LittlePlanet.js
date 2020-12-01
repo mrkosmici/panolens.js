@@ -1,4 +1,5 @@
 import { ImagePanorama } from './ImagePanorama';
+import { VideoPanorama } from './VideoPanorama';
 import { Infospot } from '../infospot/Infospot';
 import { CONTROLS } from '../Constants';
 import { StereographicShader } from '../shaders/StereographicShader';
@@ -15,6 +16,13 @@ function LittlePlanet ( type = 'image', source ) {
     if ( type === 'image' ) {
 
         ImagePanorama.call( this, source );
+
+    }
+
+    if ( type === 'video' ) {
+
+        console.log(source);
+        VideoPanorama.call( this, source );
 
     }
 
@@ -38,7 +46,7 @@ function LittlePlanet ( type = 'image', source ) {
 
 }
 
-LittlePlanet.prototype = Object.assign( Object.create( ImagePanorama.prototype ), {
+LittlePlanet.prototype = Object.assign( Object.create( VideoPanorama.prototype ), {
 
     constructor: LittlePlanet,
 
@@ -180,6 +188,9 @@ LittlePlanet.prototype = Object.assign( Object.create( ImagePanorama.prototype )
             const angleX = THREE.Math.degToRad( x - this.userMouse.x ) * 0.4;
             const angleY = THREE.Math.degToRad( y - this.userMouse.y ) * 0.4;
 
+            //console.log('x: '+x+' | y: '+y+' | angleX: '+angleX+' | angleY: '+angleY);
+            //console.log('this.userMouse.x:' + this.userMouse.x +'this.userMouse.y: '+this.userMouse.y);
+
             if ( this.dragging ) {
                 this.quatA.setFromAxisAngle( this.vectorY, angleX );
                 this.quatB.setFromAxisAngle( this.vectorX, angleY );
@@ -304,7 +315,7 @@ LittlePlanet.prototype = Object.assign( Object.create( ImagePanorama.prototype )
 		
         this.dispatchEvent( { type: 'panolens-viewer-handler', method: 'disableControl' } );
 
-        ImagePanorama.prototype.onLoad.call( this, texture );
+        VideoPanorama.prototype.onLoad.call( this, texture );
 		
     },
 
