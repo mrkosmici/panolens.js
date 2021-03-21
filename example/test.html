@@ -56,36 +56,15 @@
 
       viewer = new PANOLENS.Viewer( {
         controlBar: true,
-        horizontalView: true,
+        horizontalView: false,
         autoRotate: false, 
-        output: 'overlay',
-        rotateSpeed: 0.3,
       } );
-      littlePlanet = new PANOLENS.VideoLittlePlanet( path );
+      littlePlanet = new PANOLENS.VideoPanorama( path );
       viewer.add( littlePlanet );
 
-
-      // creating panel
-        const panel = new dat.GUI( { width: 310 } );
-
-				const folder1 = panel.addFolder( 'Klip' );
-				const folder2 = panel.addFolder( 'Kamera' );
-				const folder3 = panel.addFolder( 'Sterowanie myszką' );
-
-				settings = {
-					'x': true,
-					'y': false,
-				};
-
-        folder1.add( settings, 'x' );
-				folder1.add( settings, 'y' );
-			
-				folder1.open();
-				folder2.open();
-				folder3.open();
-
-
-
+      viewer.getControl().addEventListener('change', function(orbit) {
+        console.log(orbit.keys);
+      });
 
     </script>
 

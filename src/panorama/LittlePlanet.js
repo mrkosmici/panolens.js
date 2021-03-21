@@ -21,7 +21,6 @@ function LittlePlanet ( type = 'image', source ) {
 
     if ( type === 'video' ) {
 
-        console.log(source);
         VideoPanorama.call( this, source );
 
     }
@@ -70,7 +69,7 @@ LittlePlanet.prototype = Object.assign( Object.create( VideoPanorama.prototype )
 			
         }
 
-        ImagePanorama.prototype.add.call( this, object );
+        VideoPanorama.prototype.add.call( this, object );
 
     },
 
@@ -150,6 +149,8 @@ LittlePlanet.prototype = Object.assign( Object.create( VideoPanorama.prototype )
             const x = ( event.clientX >= 0 ) ? event.clientX : event.touches[ 0 ].clientX;
             const y = ( event.clientY >= 0 ) ? event.clientY : event.touches[ 0 ].clientY;
 
+            // console.log('x: ' + x + 'y: ' + y);
+
             this.dragging = true;
             this.userMouse.set( x, y );
 
@@ -188,14 +189,12 @@ LittlePlanet.prototype = Object.assign( Object.create( VideoPanorama.prototype )
             const angleX = THREE.Math.degToRad( x - this.userMouse.x ) * 0.4;
             const angleY = THREE.Math.degToRad( y - this.userMouse.y ) * 0.4;
 
-            //console.log('x: '+x+' | y: '+y+' | angleX: '+angleX+' | angleY: '+angleY);
-            //console.log('this.userMouse.x:' + this.userMouse.x +'this.userMouse.y: '+this.userMouse.y);
-
             if ( this.dragging ) {
                 this.quatA.setFromAxisAngle( this.vectorY, angleX );
                 this.quatB.setFromAxisAngle( this.vectorX, angleY );
                 this.quatCur.multiply( this.quatA ).multiply( this.quatB );
                 this.userMouse.set( x, y );
+
             }
 
             break;
@@ -275,6 +274,7 @@ LittlePlanet.prototype = Object.assign( Object.create( VideoPanorama.prototype )
         if ( this.material ) {
 
             this.material.uniforms.transform.value.makeRotationFromQuaternion( this.quatSlerp );
+            console.log(this.quatSlerp);
 
         }
         
@@ -327,7 +327,7 @@ LittlePlanet.prototype = Object.assign( Object.create( VideoPanorama.prototype )
 
         window.cancelAnimationFrame( this.frameId );
 
-        ImagePanorama.prototype.onLeave.call( this );
+        VideoPanorama.prototype.onLeave.call( this );
 		
     },
 
@@ -347,7 +347,7 @@ LittlePlanet.prototype = Object.assign( Object.create( VideoPanorama.prototype )
 
         this.unregisterMouseEvents();
 
-        ImagePanorama.prototype.dispose.call( this );
+        VideoPanorama.prototype.dispose.call( this );
 
     }
 

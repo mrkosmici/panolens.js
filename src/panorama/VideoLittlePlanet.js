@@ -44,9 +44,9 @@ VideoLittlePlanet.prototype = Object.assign( Object.create( LittlePlanet.prototy
 		
         this.material.uniforms[ 'tDiffuse' ].value = texture;
 
-		},
+    },
 		
-		/**
+    /**
      * Set video texture
      * @memberOf VideoLittlePlanet
      * @instance
@@ -55,18 +55,18 @@ VideoLittlePlanet.prototype = Object.assign( Object.create( LittlePlanet.prototy
      */
     setVideoTexture: function ( video ) {
 
-			if ( !video ) return;
+        if ( !video ) return;
 
-			const videoTexture = new THREE.VideoTexture( video );
-			videoTexture.minFilter = THREE.LinearFilter;
-			videoTexture.magFilter = THREE.LinearFilter;
-			videoTexture.format = THREE.RGBFormat;
+        const videoTexture = new THREE.VideoTexture( video );
+        videoTexture.minFilter = THREE.LinearFilter;
+        videoTexture.magFilter = THREE.LinearFilter;
+        videoTexture.format = THREE.RGBFormat;
 
-			this.updateTexture( videoTexture );
+        this.updateTexture( videoTexture );
 
-			return videoTexture;
+        return videoTexture;
 
-	},
+    },
 
     /**
      * Dispose
